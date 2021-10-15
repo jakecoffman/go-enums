@@ -14,7 +14,7 @@ func main() {
 	// We didn't have to define Stringer on each color.
 	fmt.Println("Color is:", theColor)
 
-	// We don't have pattern matching in Go, so to make is so all enums must be handled,
+	// We don't have pattern matching in Go, so to ensure all values are handled,
 	// add a func to the interface to do what you need. It will force all Color types
 	// to implement the func and thus achieve what we want with pattern matching.
 	theColor.DoThing()
