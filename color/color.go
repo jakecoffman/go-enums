@@ -9,9 +9,11 @@ import (
 // when the value is known.
 type Color interface {
 	// DoThing is an example of how to avoid another switch statement. Adding
-	// a new method here forces all of the color types below to have to implement
+	// a new method here forces all the color types below to have to implement
 	// it as well. This safely achieves what pattern matching can do.
 	DoThing()
+	// Unexported method so users of the package can't add their own values.
+	enum()
 }
 
 // If red and blue were struct{} we wouldn't be able to make this const.
@@ -47,11 +49,15 @@ func FromString(str string) (Color, error) {
 
 type red string
 
+func (red) enum() {}
+
 func (red) DoThing() {
 	fmt.Println("red DoThing")
 }
 
 type blue string
+
+func (blue) enum() {}
 
 func (blue) DoThing() {
 	fmt.Println("blue DoThing")
